@@ -24,7 +24,7 @@ public class CinemaController {
     }
 
     @PostMapping("/purchase")
-    public ResponseEntity<?> purchaseSeat (@requestBody Seat seat) {
+    public ResponseEntity<?> purchaseSeat (@RequestBody Seat seat) {
         if (seat.getColumn() > room.getTotal_columns() || seat.getRow() > room.getTotal_columns() ||seat.getColumn() <= 0 || seat.getRow() <= 0) {
             return new ResponseEntity<>(Map.of("error", "The number of a row or a column is out of bounds!"), HttpStatus.BAD_REQUEST);
         } else {
@@ -32,7 +32,7 @@ public class CinemaController {
                 return new ResponseEntity<>(Map.of("error", "The ticket has been already purchased!"), HttpStatus.BAD_REQUEST);
             } else {
                 Ticket sold = room.purchaseSeat(seat);
-                ticketsold.put(sold.getToken(), sold);
+                ticketSold.put(sold.getToken(), sold);
                 LoggerFactory.getLogger(CinemaController.class).info("/purchase endpoint: " + sold.getToken());
                 return new ResponseEntity<>(sold, HttpStatus.OK);
             }
@@ -45,7 +45,7 @@ public class CinemaController {
         ReturnedTicket returnedTicket = null;
         if (ticketSold.containsKey(ticket.getToken())) {
             Ticket tmp = ticketSold.get(ticket.getToken());
-            returnedTicker = room.returnTicket(tmp.getTicket());
+            returnedTicket = room.returnTicket(tmp.getTicket());
         } else {
             return new ResponseEntity<>(Map.of("error", "Wrong token!"), HttpStatus.BAD_REQUEST);
         }

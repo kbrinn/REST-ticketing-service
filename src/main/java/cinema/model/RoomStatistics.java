@@ -1,4 +1,6 @@
 package cinema.model;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.HashMap;
 
 public class RoomStatistics {
@@ -8,7 +10,8 @@ public class RoomStatistics {
     @JsonIgnore
     HashMap<String, Ticket> room_tickets;
 
-    public RoomStatistics() {
+
+    public RoomStatistics(HashMap<String, Ticket> room_tickets) {
         this.room_tickets = new HashMap<>();
     }
 

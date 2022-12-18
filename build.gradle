@@ -8,10 +8,19 @@ version '1.0-SNAPSHOT'
 repositories {
     mavenCentral()
 }
-
 dependencies {
+
+    implementation 'io.micrometer:micrometer-core:1.5.5'
+    implementation 'org.apache.commons:commons-lang3:3.9'
+    implementation 'org.slf4j:slf4j-api:2.0.5'
+    implementation 'org.springframework.boot:spring-boot-starter:3.0.0'
+    implementation 'org.springframework.boot:spring-boot-starter-web:3.0.0'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'org.springframework.boot:spring-boot-starter-validation:'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+
+
 }
 
 test {
